@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="datepicker">
-          <input type="range" min="{{ startDate }}" max="{{ endDate }}" step="{{ step }}" ng-model="currentDate" ng-change="updateLabel()">
+          <input type="range" min="{{ startDate }}" max="{{ endDate }}" step="{{ step }}" ng-model="currentDate" ng-change="updateLabel()" ng-mouseUp="updateDateText()">
         </div>
       </div>
     </div>

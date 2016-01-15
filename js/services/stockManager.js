@@ -19,8 +19,9 @@ fideligard.factory('stockManager',
       'LULU'
     ];
 
-    stockManager.stockData = [];
+    stockManager.stockData = {};
     stockManager.refresh = false;
+    stockManager.stocksLoaded = false;
 
     stockManager.init = function(datesMinMax) {
       this.stockList.forEach( function(symbol) {
@@ -30,9 +31,21 @@ fideligard.factory('stockManager',
     };
 
     stockManager.saveData = function(response) {
-      stockManager.stockData.push(response.data.query.results.quote);
-      console.log('Loaded', + stockManager.stockData.length + ' of ' + stockManager.stockList.length);
+      var data = response.data.query.results.quote;
+      var symbol = data[0].Symbol;
+
+      stockManager.stockData[symbol] = data;
+      stockManager.loadingProgress();
+    };
+
+    stockManager.loadingProgress = function() {
+      var numberLoaded = Object.keys(stockManager.stockData).length;
+      var total = stockManager.stockList.length;
       stockManager.refresh = true;
+
+      if (numberLoaded === total) {
+        stockManager.stocksLoaded = true;
+      };
     };
 
     stockManager.resetRefresh = function(response) {
@@ -46,9 +59,23 @@ fideligard.factory('stockManager',
     };
 
     stockManager.getByDate = function(date) {
-      return this.stockData.map( function(record) {
-        return stockCalculator.generate(record, date);
-      });
+      var data = this.stockData;
+      var output = [];
+
+      for (var symbol in data) {
+        output.push( stockCalculator.generate(data[symbol], date) );
+      };
+
+      return output;
+    };
+
+    stockManager.getPrice = function(symbol, date) {
+      var validSymbol = stockManager.stockList.indexOf(symbol) !== -1;
+      if (stockManager.stocksLoaded && validSymbol) {
+        return stockCalculator.generate(stockManager.stockData[symbol], date).price;
+      } else {
+        return null;
+      };
     };
 
     return stockManager;

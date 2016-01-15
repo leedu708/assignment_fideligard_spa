@@ -13,10 +13,21 @@
       <div ui-view="stocks"></div>
     </div>
 
-    <div class="col-xs-6 col-xs-offset-1">
-      <div ui-view="datepicker"></div>
-      <div ui-view="main"></div>
+    <div class="col-xs-7">
+
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <div ui-view="datepicker"></div>
+        </div>
     </div>
+
+    <main>
+      <div class="row">
+        <div class="col-xs-12">
+          <div ui-view="main"></div>
+        </div>
+      </div>
+    </main>
 
   </div>
 </div>

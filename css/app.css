@@ -5,3 +5,7 @@
 .pointer {
   cursor: pointer;
 }
+
+main {
+  margin-top: 24px;
+}

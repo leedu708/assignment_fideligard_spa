@@ -37,7 +37,7 @@ fideligard.controller('DatePickerCtrl',
         $scope.updateDate();
       } else {
         console.log('input out of range');
-        $scope.currentDateText();
+        $scope.setCurrentDateText();
       };
     };
 

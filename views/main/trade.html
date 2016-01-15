@@ -1,3 +1,76 @@
 <div class="row">
-<h1>Trade</h1>
+
+  <div class="col-xs-9">
+    <h2>Trade</h2>
+  </div>
+
+  <div class="col-xs-3">
+    <select class="form-control"><option>Trade</option></select>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-xs-6">
+    <form name="transactForm" class="form-horizontal" ng-submit="processOrder(transactForm.$valid)">
+
+      <div class="form-group">
+        <label for="symbol" class="col-xs-4 control-label">Symbol:</label>
+        <div class="col-xs-8">
+          <input type="text" name="symbol" class="form-control" ng-model="transaction.symbol" ng-change="refresh()" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="transact" class="col-xs-4 control-label">Buy/Sell:</label>
+        <div class="col-xs-8">
+          <select name='transact' class='form-control' ng-model='transaction.type' ng-change='calcMaxQuantity()' required>
+            <option value="BUY">Buy</option>
+            <option value="SELL">Sell</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="quantity" class="col-xs-4 control-label">Quantity:</label>
+        <div class="col-xs-8">
+          <input type="number" min="1" max="{{ maxQuantity }}" name="quantity" class="form-control number-input" ng-model="transaction.quantity" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="date" class="col-xs-4 control-label">Date:</label>
+        <div class="col-xs-8">
+          <input type="date" name="date" class="form-control" ng-model="transaction.date" ng-change="refresh()" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="price" class="col-xs-4 control-label">Price:</label>
+        <div class="col-xs-8">
+          <p class="form-control">{{ transaction.price | currency }}</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-4 control-label">Total:</label>
+        <div class="col-xs-8">
+          <p class="form-control">{{ transaction.price * transaction.quantity | currency }}</p>
+        </div>
+      </div>
+
+      <input type="submit" class="btn btn-success btn-block" value="Place Order">
+
+    </form>
+
+    <div class="col-xs-5 col-xs-offset-1">
+      <h4>Available Funds:</h4>
+      <p>{{ funds | currency }}</p>
+      <h4>Order Status</h4>
+      <p>{{ status(transactForm.$valid) }}</p>
+    </div>
+    
+  </div>
+
 </div>
