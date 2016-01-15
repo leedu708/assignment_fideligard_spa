@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-12">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="datepicker-labels">
+          <p class="pull-left date-label-min text-muted">{{ startDate | date: 'M/d/yyyy' }}</p>
+          <p class="pull-right date-label-min text-muted">{{ endDate | date: 'M/d/yyyy' }}</p>
+
+          <input type="text" class="datepicker-label text-center form-control" ng-model="currentDateText">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="datepicker">
+          <input type="range" min="{{ startDate }}" max="{{ endDate }}" step="{{ step }}" id="datepicker" ng-model="currentDate" ng-change="updateLabel()">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
