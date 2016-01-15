@@ -7,7 +7,9 @@
           <p class="pull-left date-label-min text-muted">{{ startDate | date: 'M/d/yyyy' }}</p>
           <p class="pull-right date-label-min text-muted">{{ endDate | date: 'M/d/yyyy' }}</p>
 
-          <input type="text" class="datepicker-label text-center form-control" ng-model="currentDateText">
+          <form name="dateTextForm" ng-submit="unfocus()">
+            <input type="text" name="dateText" class="datepicker-label text-center form-control" ng-model="currentDateText" ng-blur="updateDateText()">
+          </form>
         </div>
       </div>
     </div>

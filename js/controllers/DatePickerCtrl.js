@@ -11,17 +11,33 @@ fideligard.controller('DatePickerCtrl',
     $scope.rangePercent = 0;
     $scope.dateInput = false;
 
-    $scope.updateLabel = function() {
+    // runs immediately
+    ($scope.setCurrentDateText = function() {
       $scope.currentDateText = $filter('date')($scope.currentDate, "M/d/yyyy");
+    })();
+
+    // updates datepicker input above selector
+    $scope.updateLabel = function() {
+      $scope.setCurrentDateText();
       var label = angular.element(document.querySelector('.datepicker-label'));
-      $scope.rangePercent = ($scope.currentDate - $scope.startDate) / ($scope.endDate - $scope.startDate);
-      label.css('margin-left', $scope.rangePercent * 100 + '%');
+      $scope.range = ($scope.currentDate - $scope.startDate) / ($scope.endDate - $scope.startDate);
+      label.css('margin-left', $scope.range * 100 + '%');
     };
 
-    $scope.inputDate = function() {
-      $scope.dateInput = true;
-      var inputField = angular.element(document.querySelector('#datepicker-input'));
-      inputField.css('left', $scope.rangePercent * 100 + '%').css('top', 0)
+    $scope.unfocus = function() {
+      document.dateTextForm.dateText.blur();
+    };
+
+    $scope.updateDateText = function() {
+      var input = new Date(document.dateTextForm.dateText.value);
+
+      if (input > $scope.startDate && input < $scope.endDate) {
+        $scope.currentDate = Number(new Date(input));
+        $scope.updateLabel();
+      } else {
+        console.log('input out of range');
+        $scope.currentDateText();
+      };
     };
 
   }]);
