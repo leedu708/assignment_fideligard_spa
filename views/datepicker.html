@@ -5,7 +5,7 @@
       <div class="col-xs-12">
         <div class="datepicker-labels">
           <p class="pull-left date-label-min text-muted">{{ startDate | date: 'M/d/yyyy' }}</p>
-          <p class="pull-right date-label-min text-muted">{{ endDate | date: 'M/d/yyyy' }}</p>
+          <p class="pull-right date-label-max text-muted">{{ endDate | date: 'M/d/yyyy' }}</p>
 
           <form name="dateTextForm" ng-submit="unfocus()">
             <input type="text" name="dateText" class="datepicker-label text-center form-control" ng-model="currentDateText" ng-blur="updateDateText()">
@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="datepicker">
-          <input type="range" min="{{ startDate }}" max="{{ endDate }}" step="{{ step }}" id="datepicker" ng-model="currentDate" ng-change="updateLabel()">
+          <input type="range" min="{{ startDate }}" max="{{ endDate }}" step="{{ step }}" ng-model="currentDate" ng-change="updateLabel()">
         </div>
       </div>
     </div>

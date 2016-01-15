@@ -1,1 +1,41 @@
-<h1>Stocks</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Stocks</h1>
+        <p>{{ currentDate | date: 'M/d/yyyy' }}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4 pull-right">
+        <input name="stock-filter" class="form-control">
+      </div>
+
+      <div class="col-xs-4 pull-right text-right">
+        <label for="stock-filter"><h4>Filter:</h4></label>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table id="stock-table" class="table table-bordered table=striped">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>1 Day</th>
+            <th>7 Days</th>
+            <th>30 Days</th>
+            <th>Trade?</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr stock-row ng-repeat='stock in stocks' stock='stock'></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

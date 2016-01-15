@@ -16,9 +16,10 @@
     <!-- Boostrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-    <!-- styles -->
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <!-- custom styles -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="css/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/stocks.css">
   </head>
 
   <body ng-app='fideligard'>
@@ -33,9 +34,15 @@
   <!-- controllers -->
   <script src="js/controllers/MainCtrl.js"></script>
   <script src="js/controllers/DatePickerCtrl.js"></script>
+  <script src="js/controllers/StocksCtrl.js"></script>
 
   <!-- directives -->
+  <script src="js/directives/stockRow.js"></script>
 
   <!-- services -->
+  <script src="js/services/stockCalculator.js"></script>
+  <script src="js/services/dateService.js"></script>
+  <script src="js/services/stockAPI.js"></script>
+  <script src="js/services/stockManager.js"></script>
 
 </html>

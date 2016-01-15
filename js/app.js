@@ -2,7 +2,7 @@ var fideligard = angular.module('fideligard', ['ui.router', 'ui.bootstrap']);
 
 fideligard.config( function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise("/fideligard/shared");
+  $urlRouterProvider.otherwise("/fideligard/shared/trade");
 
   $stateProvider
   .state('fideligard', {
@@ -25,7 +25,7 @@ fideligard.config( function($stateProvider, $urlRouterProvider) {
 
       'stocks': {
         templateUrl: 'views/stocks.html',
-        controller: function($scope) { console.log("stocks") }
+        controller: 'StocksCtrl'
       },
 
       'main': {
