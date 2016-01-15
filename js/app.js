@@ -2,7 +2,7 @@ var fideligard = angular.module('fideligard', ['ui.router', 'ui.bootstrap']);
 
 fideligard.config( function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise("/fideligard/shared/trade");
+  $urlRouterProvider.otherwise("/fideligard/shared/trade/AAPL");
 
   $stateProvider
   .state('fideligard', {
@@ -36,7 +36,7 @@ fideligard.config( function($stateProvider, $urlRouterProvider) {
   })
 
   .state('fideligard.shared.trade', {
-    url: '/trade',
+    url: '/trade/:symbol',
     views: {
       '': {
         templateUrl: 'views/main/trade.html',
@@ -49,8 +49,8 @@ fideligard.config( function($stateProvider, $urlRouterProvider) {
     url: '/transactions',
     views: {
       '': {
-        templateUrl: 'views/main/transactions',
-        controller: function($scope) { console.log("transactions") }
+        templateUrl: 'views/main/transactions.html',
+        controller: 'TransactionsCtrl'
       }
     }
   })
@@ -59,7 +59,7 @@ fideligard.config( function($stateProvider, $urlRouterProvider) {
     url: '/portfolio',
     views: {
       '': {
-        templateUrl: 'views/main/portfolio',
+        templateUrl: 'views/main/portfolio.html',
         controller: function($scope) { console.log("portfolio") }
       }
     }
