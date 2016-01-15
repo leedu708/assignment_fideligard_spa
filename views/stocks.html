@@ -10,7 +10,7 @@
 
     <div class="row">
       <div class="col-xs-4 pull-right">
-        <input name="stock-filter" class="form-control">
+        <input name="stock-filter" class="form-control" ng-model="symbolFilter">
       </div>
 
       <div class="col-xs-4 pull-right text-right">
@@ -22,17 +22,41 @@
       <table id="stock-table" class="table table-bordered table=striped">
         <thead>
           <tr>
-            <th>Symbol</th>
-            <th>Price</th>
-            <th>1 Day</th>
-            <th>7 Days</th>
-            <th>30 Days</th>
-            <th>Trade?</th>
+
+            <th class="pointer" ng-click="toggleSort('symbol')">
+              Symbol
+              <i class="glyphicon" ng-class="getIcon('symbol')"></i>
+            </th>
+
+            <th class="pointer" ng-click="toggleSort('price')">
+              Price
+              <i class="glyphicon" ng-class="getIcon('price')"></i>
+            </th>
+
+            <th class="pointer" ng-click="toggleSort('priceChange1D')">
+              1 Day
+              <i class="glyphicon" ng-class="getIcon('priceChange1D')"></i>
+            </th>
+
+            <th class="pointer" ng-click="toggleSort('priceChange7D')">
+              7 Days
+              <i class="glyphicon" ng-class="getIcon('priceChange7D')"></i>
+            </th>
+
+            <th class="pointer" ng-click="toggleSort('priceChange30D')">
+              30 Days
+              <i class="glyphicon" ng-class="getIcon('priceChange30D')"></i>
+            </th>
+
+            <th>
+              Trade?
+            </th>
+
           </tr>
         </thead>
 
         <tbody>
-          <tr stock-row ng-repeat='stock in stocks' stock='stock'></tr>
+          <tr stock-row ng-repeat='stock in stocks | orderBy:sort:sortDescending | filter: { symbol: symbolFilter }' stock='stock'></tr>
         </tbody>
       </table>
     </div>

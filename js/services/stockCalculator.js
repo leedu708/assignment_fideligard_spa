@@ -37,7 +37,7 @@ fideligard.factory('stockCalculator', function() {
     // reverse fill prices on weekends/holidays
     for(var i = array.length - 1; i >= 0; i--) {
       if (array[i] === undefined) {
-        filled[i] = filled[i+1];
+        filled[i] = filled[i + 1];
       } else {
         filled[i] = array[i];
       };
@@ -69,10 +69,10 @@ fideligard.factory('stockCalculator', function() {
   };
 
   stockCalculator.generate = function(dataRecord, date) {
-    var array = stockCalculator(dataRecord, date, 40);
+    var array = stockCalculator.buildArray(dataRecord, date, 40);
     return {
       symbol: array[0].Symbol,
-      price: array[0].Close,
+      price: Number(array[0].Close),
       priceChange1D: this.priceChange(array, 1),
       priceChange7D: this.priceChange(array, 7),
       priceChange30D: this.priceChange(array, 30)
