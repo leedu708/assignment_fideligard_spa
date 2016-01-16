@@ -1,0 +1,6 @@
+<td>{{ transaction.date | date:'M/d/yyyy' }}</td>
+<td>{{ transaction.symbol }}</td>
+<td>{{ transaction.type }}</td>
+<td>{{ transaction.quantity | number }}</td>
+<td>{{ transaction.price | currency }}</td>
+<td>{{ transaction.price * transaction.quantity | currency }}</td>

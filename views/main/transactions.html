@@ -1,18 +1,67 @@
-<div class="row">
+<div class='row'>
 
-  <div class="col-xs-9">
+  <div class='col-xs-5'>
     <h2>Transactions</h2>
   </div>
 
-  <div class="col-xs-3">
-    <select class="form-control" ng-model="selectedState" ng-change="routeTo(selectedState)">
-      <option value="fideligard.shared.trade">Trade</option>
-      <option value="fideligard.shared.transactions">Transactions</option>
+  <div class="col-xs-2 text-right">
+    <label for="transaction-filter"><h4>Filter:</h4></label>
+  </div>
+  <div class="col-xs-2">
+    <input name="transaction-filter" class="form-control" ng-model="transactionFilter">
+  </div>
+
+  <div class='col-xs-3'>
+    <select class='form-control' ng-model='selectedState' ng-change='routeTo(selectedState)'>
+      <option value = "fideligard.shared.trade">Trade</option>
+      <option value = "fideligard.shared.transactions">Transactions</option>
     </select>
   </div>
 
 </div>
 
-<div class="row">
+<div class='table-responsive'>
+  <table id='transaction-table' class='table table-bordered table-striped'>
+    <thead>
+      <tr>
+
+        <th class='pointer' ng-click="toggleSort('date')">
+          Date
+          <i class="glyphicon" ng-class="getIcon('date')"></i>
+        </th>
+
+        <th class='pointer' ng-click="toggleSort('symbol')">
+          Symbol
+          <i class="glyphicon" ng-class="getIcon('symbol')"></i>
+        </th>
+
+        <th class='pointer' ng-click="toggleSort('type')">
+          Type
+          <i class="glyphicon" ng-class="getIcon('type')"></i>
+        </th>
+
+        <th class='pointer' ng-click="toggleSort('quantity')">
+          Quantity
+          <i class="glyphicon" ng-class="getIcon('quantity')"></i>
+        </th>
+
+        <th class='pointer' ng-click="toggleSort('price')">
+          Price Per Share
+          <i class="glyphicon" ng-class="getIcon('price')"></i>
+        </th>
+
+        <th class='pointer' ng-click="toggleSort('total')">
+          Total
+          <i class="glyphicon" ng-class="getIcon('total')"></i>
+        </th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr transaction-row ng-repeat='transaction in transactions | orderBy:sort:sortDescending | filter: transactionFilter' transaction='transaction'></tr>
+    </tbody>
+
+  </table>
 
 </div>

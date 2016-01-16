@@ -21,9 +21,8 @@ fideligard.controller('TradeCtrl',
       $scope.manager = stockManager;
       $scope.$watch('manager.stockData', function(newData) {
         $scope.transaction.price = stockManager.getPrice($scope.transaction.symbol, $scope.transaction.date);
+        $scope.calcMaxQuantity();
       }, true);
-
-      $scope.calcMaxQuantity();
 
     };
 
@@ -61,9 +60,16 @@ fideligard.controller('TradeCtrl',
     };
 
     $scope.processOrder = function(valid) {
-      transactions.create($scope.transaction);
-      funds.payment($scope.transaction);
-      portfolio.add($scope.transaction)
+      if (valid) {
+        transactions.create($scope.transaction);
+        funds.payment($scope.transaction);
+        portfolio.add($scope.transaction);
+        console.log('transaction complete');
+
+        $state.go('fideligard.shared.transactions');
+      } else {
+        console.log('transaction failure');
+      };
 
       $scope.funds = funds.availableFunds;
       $scope.currentShares = portfolio.currentShares($scope.transaction.symbol);
