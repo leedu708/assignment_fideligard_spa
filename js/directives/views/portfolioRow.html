@@ -1,0 +1,14 @@
+
+<td>{{ stock.symbol }}</td>
+<td>{{ stock.quantity }}</td>
+<td>{{ stock.costBasis | currency }}</td>
+<td>{{ stock.quantity * stock.price | currency }}</td>
+<td>{{ stock.quantity * stock.price - stock.costBasis | currency }}</td>
+<td>{{ stock.price | currency }}</td>
+<td>{{ stock.priceChange1D | currency }}</td>
+<td>{{ stock.priceChange7D | currency }}</td>
+<td>{{ stock.priceChange30D | currency }}</td>
+
+<td>
+  <a ng-hide="stock.symbol === 'CASH'" ui-sref = ".trade({ symbol:stock.symbol })">trade?</a>
+</td>
