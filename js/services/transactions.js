@@ -10,7 +10,7 @@ fideligard.factory('transactions',
     };
 
     transactions.between = function(startDate, endDate) {
-      transactions.all.filter( function(transaction) {
+      return transactions.all.filter( function(transaction) {
         return (transaction.date >= startDate && transaction.date <= endDate)
       });
     };
